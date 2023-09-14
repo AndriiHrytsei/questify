@@ -29,7 +29,7 @@
   # Переходите до папки
   $ cd <назва папки>
   # Клонуєте репозиторій
-  $ git clone  .
+  $ git clone https://github.com/AndriiHrytsei/questify.git .
   # Встановдюєте залежнсоті
   $ npm install
   # Запускаєте проект
