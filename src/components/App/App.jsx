@@ -1,10 +1,10 @@
+import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { RestrictedRoute } from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { RegisterPage } from "../../pages/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage";
 import { QuestsPage } from "../../pages/QuestsPage";
-
 
 export default function App() {
   return (
