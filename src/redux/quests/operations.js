@@ -9,7 +9,7 @@ export const fetchCards = createAsyncThunk("card/fetchAll", async (_, thunkAPI) 
         return thunkAPI.rejectWithValue(e.message);
       }
 });
-export const fetchCardsCompleted = createAsyncThunk("card/fetchAll", async (_, thunkAPI) => {
+export const fetchCardsCompleted = createAsyncThunk("card/fetchAllCompleted", async (_, thunkAPI) => {
     try {
         const response = await axios.get("/card/complete");
         return response.data;
@@ -39,7 +39,7 @@ export const addCard = createAsyncThunk(
     "contacts/deleteCard",
     async (cardId, thunkAPI) => {
       try {
-        const response = await axios.delete(`/card/${contactId}`);
+        const response = await axios.delete(`/card/${cardId}`);
         return response.data;
       } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
