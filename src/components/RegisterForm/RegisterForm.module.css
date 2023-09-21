@@ -1,0 +1,73 @@
+.registerFormBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.heading {
+  font-weight: 500;
+  font-family: 'Roboto';
+}
+
+.logo {
+  color: #00d7ff;
+  font-family: 'Roboto';
+  font-weight: 700;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1.5em;
+  width: 100%;
+}
+
+input[name="email"],
+input[name="userName"],
+input[name="password"] {
+  font-family: 'Roboto';
+  border: none;
+  color: #B9C3C8;
+  font-weight: 500;
+  border-bottom: 3px solid #00d7ff;
+  width: 95%;
+  max-width: 27rem;
+  padding: 10px 0 10px 9px;
+}
+
+.registerSubmit {
+  margin-right: 1em;
+  background-color: #FF851C;
+  border: 1px solid #FF851C;
+  border-radius: 10px;
+  padding: 10px 30px;
+  font-size: 24px; 
+  color: #fff;
+  font-family: 'Roboto';
+  font-weight: 700;
+  box-shadow: 0 0 6px 1px #FF851C;
+}
+
+.goToSignIn {
+  text-decoration: none;
+  font-family: 'Roboto';
+  color: #000;
+  /* font-size: 18px; */
+  font-weight: 700;
+}
+
+@media screen and (min-width: 767px) {
+  .registerFormBox,
+  .registerForm {
+    align-items: flex-start;
+    margin-left: 8em;
+  }
+  .heading {
+    margin-left: 5em;
+  }
+}
