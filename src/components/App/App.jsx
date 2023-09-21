@@ -12,7 +12,7 @@ export default function App() {
       <Route
         path="/"
         element={
-          <RestrictedRoute redirectTo="/quests" component={<RegisterPage />}/>
+          <RestrictedRoute component={<RegisterPage />} redirectTo="/quests" />
         }
       />
       <Route
@@ -23,7 +23,9 @@ export default function App() {
       />
       <Route
         path="/quests"
-        element={<PrivateRoute component={<QuestsPage />} redirectTo="/login" />}
+        element={
+          <PrivateRoute component={<QuestsPage />} redirectTo="/login" />
+        }
       />
     </Routes>
   );
