@@ -1,4 +1,5 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import  QuestList  from "../components/QuestList/QuestList"
 
 export function QuestsPage() {
   return (
@@ -6,7 +7,7 @@ export function QuestsPage() {
       <Helmet>
         <title>Quests</title>
       </Helmet>
-      <p>quests</p>
+        <QuestList />
     </HelmetProvider>
   )
 }

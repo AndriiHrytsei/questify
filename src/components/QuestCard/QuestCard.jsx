@@ -1,14 +1,11 @@
 import css from './QuestCard.module.css' 
+import  DificultySelect  from '../Select/Select'
 
 export default function QuestCard() {
   return (
     <div className={css.main}>
         <div className={css.levels}>
-            <select name="levels" id="levels">
-                <option value="easy">Easy</option>
-                <option value="normal">Normal</option>
-                <option value="hard">Hard</option>
-            </select>
+            <DificultySelect/>
             <div>&#9733;</div>
         </div>
         <div className={css.task}>

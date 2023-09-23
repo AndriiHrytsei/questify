@@ -14,14 +14,14 @@
 }
 
 .levels {
-    padding-top: 20px;
+    padding-top: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
 .task {
-    margin-top: 49px;
+    margin-top: 40px;
 }
 
 .list_task {
