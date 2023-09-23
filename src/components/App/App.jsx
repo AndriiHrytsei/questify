@@ -5,22 +5,28 @@ import PrivateRoute from "../PrivateRoute";
 import { RegisterPage } from "../../pages/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage";
 import { QuestsPage } from "../../pages/QuestsPage";
+import AuthLayout from "../AuthLayout/AuthLayout";
 
 export default function App() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <RestrictedRoute component={<RegisterPage />} redirectTo="/quests" />
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <RestrictedRoute component={<LoginPage />} redirectTo="/quests" />
-        }
-      />
+      <Route path="/" element={<AuthLayout />}>
+        <Route
+          index
+          element={
+            <RestrictedRoute
+              component={<RegisterPage />}
+              redirectTo="/quests"
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/quests" />
+          }
+        />
+      </Route>
       <Route
         path="/quests"
         element={

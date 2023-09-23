@@ -1,0 +1,42 @@
+.authContainer {
+  background-image: url(../../assets/bgimagemobile1.png), url(../../assets/bgimagemobile2.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: left bottom, right bottom;
+  background-size: 70%, 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.heading {
+  font-weight: 500;
+  font-family: "Roboto";
+}
+
+.logo {
+  color: #00d7ff;
+  font-family: "Roboto";
+  font-weight: 700;
+}
+
+@media screen and (min-width: 767px) {
+  .authContainer {
+    align-items: flex-start;
+    background-image: url(../../assets/bgimage1-removebg-preview.png), url(../../assets/bgimage2-removebg-preview.png);
+    background-position: right top, right bottom;
+    background-size: 40%, 80%;
+    
+  }
+  .heading {
+    margin-left: 5.8em;
+  }
+}
+
+@media screen and (min-width:1110px) {
+  .authContainer {
+    background-size: 30%, 65%;
+  }
+}

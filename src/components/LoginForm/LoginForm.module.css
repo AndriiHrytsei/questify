@@ -1,22 +1,3 @@
-.loginFormBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.heading {
-  font-weight: normal;
-  font-family: 'Roboto';
-}
-
-.logo {
-  color: #00d7ff;
-  font-family: 'Roboto';
-  font-weight: 700;
-}
-
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -28,32 +9,28 @@
 
 .loginSubmit {
   margin-right: 1em;
-  background-color: #FF851C;
-  border: 1px solid #FF851C;
+  background-color: #ff851c;
+  border: 1px solid #ff851c;
   border-radius: 10px;
   padding: 10px 30px;
-  font-size: 24px; 
+  font-size: 24px;
   color: #fff;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 700;
-  box-shadow: 0 0 6px 1px #FF851C;
+  box-shadow: 0 0 6px 1px #ff851c;
 }
 
 .goToSignUp {
   text-decoration: none;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   color: #000;
   /* font-size: 18px; */
   font-weight: 700;
 }
 
 @media screen and (min-width: 767px) {
-  .loginFormBox,
   .loginForm {
     align-items: flex-start;
-    margin-left: 8em;
-  }
-  .heading {
-    margin-left: 5em;
+    margin-left: 10em;
   }
 }
