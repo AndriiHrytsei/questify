@@ -4,6 +4,8 @@ import { login, logout, register } from "./operations";
 const initialState = {
   user: {
     email: null,
+    id: "",
+    cards: [],
   },
   isLoggedIn: false,
   userName: "",
@@ -16,11 +18,12 @@ const authSlice = createSlice({
   reducers: {
     getUserName(state, action) {
       state.userName = action.payload;
+      localStorage.setItem('userName', JSON.stringify(state.userName))
     },
   },
   extraReducers: {
     [register.fulfilled](state, action) {
-      state.user.email = action.payload.email;
+      state.user = action.payload;
     },
     [login.fulfilled](state, action) {
       state.user = action.payload.userData;
