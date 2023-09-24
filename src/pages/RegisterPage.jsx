@@ -1,7 +1,7 @@
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import RegisterForm from "../components/RegisterForm/RegisterForm"
 
-export function RegisterPage() {
+const RegisterPage = () => {
   return (
     <HelmetProvider>
       <Helmet>
@@ -11,3 +11,5 @@ export function RegisterPage() {
     </HelmetProvider>
   )
 }
+
+export default RegisterPage
