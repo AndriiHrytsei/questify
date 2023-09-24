@@ -2,9 +2,8 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { NavLink, useNavigate } from "react-router-dom";
 import css from "./RegisterForm.module.css";
-import { getUserName } from "../../redux/auth/authSlice";
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +16,6 @@ export default function RegisterForm() {
         password: form.elements.password.value,
       })
     );
-    dispatch(getUserName(form.elements.userName.value));
     form.reset();
     navigate("/login");
   };
@@ -30,13 +28,6 @@ export default function RegisterForm() {
         id="email"
         required
         placeholder="Enter your email"
-      />
-      <input
-        type="text"
-        name="userName"
-        id="userName"
-        required
-        placeholder="Enter your username"
       />
       <input
         type="password"
@@ -56,3 +47,5 @@ export default function RegisterForm() {
     </form>
   );
 }
+
+export default RegisterForm

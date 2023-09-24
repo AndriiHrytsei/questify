@@ -6,13 +6,15 @@ import { RegisterPage } from "../../pages/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage";
 import { QuestsPage } from "../../pages/QuestsPage";
 import AuthLayout from "../AuthLayout/AuthLayout";
+import LandingPage from "../../pages/LandingPage";
 
-export default function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<AuthLayout />}>
+        <Route index element={<LandingPage />} />
         <Route
-          index
+          path="/register"
           element={
             <RestrictedRoute
               component={<RegisterPage />}
@@ -36,3 +38,5 @@ export default function App() {
     </Routes>
   );
 }
+
+export default App
