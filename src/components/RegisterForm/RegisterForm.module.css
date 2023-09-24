@@ -8,7 +8,6 @@
 }
 
 input[name="email"],
-input[name="userName"],
 input[name="password"] {
   font-family: 'Roboto';
   border: none;

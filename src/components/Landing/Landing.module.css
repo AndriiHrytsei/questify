@@ -1,0 +1,75 @@
+.landingBox {
+  padding: 0 10px;
+}
+
+.landingLogo {
+  color: #00d7ff;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 2.3em;
+}
+
+.landingHeading {
+  color: #15395A;
+  font-family: 'Roboto';
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 0.36px; 
+  max-width: 562px;
+}
+
+.formBox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formHeading {
+  color: #B9C3C8; 
+  font-family: 'Roboto';
+  margin-top: 2em;
+}
+
+input[name="userName"] {
+  font-family: 'Roboto';
+  border: none;
+  color: #B9C3C8;
+  font-weight: 500;
+  border-bottom: 3px solid #00d7ff;
+  width: 11rem;
+  padding: 10px 0 10px 9px;
+  background-color: transparent;
+  outline: none;
+}
+
+.goBtn {
+  width: 52px;
+  height: 52px;
+  background-color: #FF851C;
+  border: 1px solid #FF851C;
+  font-size: 24px; 
+  color: #fff;
+  font-family: 'Roboto';
+  margin-left: 0.8em;
+  border-radius: 100%;
+  font-weight: 700; 
+  text-align: center;
+  box-shadow: 0 0 6px 1px #FF851C;
+}
+
+@media screen and (min-width: 767px) {
+  .landingBox {
+    margin-left: 10em;
+  }
+  .landingHeading {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1110px) {
+  .landingHeading {
+    font-size: 36px;
+    line-height: 45px;
+    letter-spacing: 0.72px; 
+  }
+}

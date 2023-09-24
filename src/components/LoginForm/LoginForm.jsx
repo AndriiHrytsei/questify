@@ -2,9 +2,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import { NavLink } from "react-router-dom";
 import css from "./LoginForm.module.css";
-import { getUserName } from "../../redux/auth/authSlice"
 
-export default function LoginForm() {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -16,19 +15,11 @@ export default function LoginForm() {
         password: form.elements.password.value,
       })
     );
-    dispatch(getUserName(form.elements.userName.value))
     form.reset();
   };
 
   return (
     <form onSubmit={handleSubmit} className={css.loginForm}>
-      <input
-        type="text"
-        name="userName"
-        id="userName"
-        required
-        placeholder="Enter your username"
-      />
       <input
         type="email"
         name="email"
@@ -47,10 +38,12 @@ export default function LoginForm() {
         <button type="submit" className={css.loginSubmit}>
           Sign in!
         </button>
-        <NavLink to="/" className={css.goToSignUp}>
+        <NavLink to="/register" className={css.goToSignUp}>
           Sign up
         </NavLink>
       </div>
     </form>
   );
 }
+
+export default LoginForm
