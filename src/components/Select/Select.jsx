@@ -20,7 +20,7 @@ const dot = (color = 'transparent') => ({
 });
 
 const colourStyles = {
-  control: (styles) => ({ ...styles, backgroundColor: 'white', width: '126px', hight: '20px' }),
+  control: (styles) => ({ ...styles, backgroundColor: 'white', width: '126px', height: '20px' }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
     return {
