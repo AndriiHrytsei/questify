@@ -4,7 +4,7 @@ import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import RegisterPage from "../../pages/RegisterPage";
 import LoginPage from "../../pages/LoginPage";
-import {QuestsPage} from "../../pages/QuestsPage";
+import { QuestsPage } from "../../pages/QuestsPage";
 import AuthLayout from "../AuthLayout/AuthLayout";
 import LandingPage from "../../pages/LandingPage";
 
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<AuthLayout />}>
-        <Route index element={<LandingPage />} />
+        <Route index element={<RestrictedRoute component={<LandingPage />} redirectTo="/quests" />} />
         <Route
           path="/register"
           element={
@@ -37,6 +37,6 @@ const App = () => {
       />
     </Routes>
   );
-}
+};
 
-export default App
+export default App;
