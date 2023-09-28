@@ -12,7 +12,12 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<AuthLayout />}>
-        <Route index element={<RestrictedRoute component={<LandingPage />} redirectTo="/quests" />} />
+        <Route
+          index
+          element={
+            <RestrictedRoute component={<LandingPage />} redirectTo="/quests" />
+          }
+        />
         <Route
           path="/register"
           element={
