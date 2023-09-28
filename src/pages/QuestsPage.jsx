@@ -1,5 +1,6 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import AppBar from "../components/AppBar/AppBar";
+import QuestList from "../components/QuestList/QuestList";
 
 export function QuestsPage() {
   return (
@@ -8,7 +9,7 @@ export function QuestsPage() {
         <title>Quests</title>
       </Helmet>
       <AppBar />
-      <p>quests</p>
+      <QuestList />
     </HelmetProvider>
   );
 }

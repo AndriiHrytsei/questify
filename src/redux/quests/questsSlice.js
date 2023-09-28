@@ -29,13 +29,17 @@ const cardSlice = createSlice({
     },
     [addCard.fulfilled](state, action) {
       state.isLoading = false;
-      state.cards = action.payload;
+      state.cards.push(action.payload);
     },
     [deleteCard.pending](state) {
       state.isLoading = true;
     },
     [deleteCard.fulfilled](state, action) {
       state.isLoading = false;
+      const index = state.cards.findIndex(
+        card => card.id === action.payload.id
+      )
+      state.cards.splice(index,1)
       state.cards = action.payload;
     },
   },
