@@ -1,0 +1,31 @@
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+}
+
+.challenge {
+  width: 30px;
+  height: 30px;
+  background: #00d7ff;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 4px #00d7ff;
+  text-transform: uppercase;
+  transition: all 0.4s ease-in-out;
+}
+.challenge:hover {
+  background: #35e1ff;
+  box-shadow: 0px 0px 10px 4px #01798e;
+}
+
+.logout {
+  width: 30;
+  height: 34px;
+  opacity: 0.8;
+}
