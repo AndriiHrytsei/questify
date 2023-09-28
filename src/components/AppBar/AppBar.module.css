@@ -1,0 +1,126 @@
+/******** SBROS *********/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+button {
+  line-height: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/******** SBROS *********/
+
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: rgba(36, 42, 55, 1);
+  height: 70px;
+  box-shadow: 0px 4px 4px 0px rgba(36, 42, 55, 0.1);
+  display: flex;
+}
+
+.itsJ {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  background: rgba(62, 78, 108, 1);
+  font-family: "Arimo", sans-serif;
+  font-family: "Mooli", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  padding: 0;
+}
+.yourName {
+  width: 170px;
+  display: flex;
+  justify-content: center;
+}
+.yourName,
+h4 {
+  margin-top: 1.5%;
+  margin-left: 5%;
+  font-family: "Arimo", sans-serif;
+  font-family: "Mooli", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(123, 138, 164, 1);
+}
