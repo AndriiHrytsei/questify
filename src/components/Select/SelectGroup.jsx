@@ -30,7 +30,6 @@ const colourStyles = {
       padding: 0,
       paddinfLeft: 10,
       transform: "scale(0.8)",
-      fontSize: "20px",
       borderRadius: "50px",
       borderTopLeftRadius: "0",
       borderBottomLeftRadius: "0",
@@ -73,13 +72,13 @@ const colourStyles = {
       }
     };
   },
-  IndicatorSeparator: (styles, _) => ({ ...styles, margin: 0, padding: 0,  }),
-  DropdownIndicator: (styles, _) => ({ ...styles, margin: 0, padding: 0, }),
+  IndicatorSeparator: (styles) => ({ ...styles, margin: 0, padding: 0,  }),
+  DropdownIndicator: (styles) => ({ ...styles, margin: 0, padding: 0, }),
   singleValue: (styles, { data }) => ({
     ...styles,
     ...dot(data.color)
   }),
-  menu: (styles, _) => ({ ...styles, width: "120px", fontFamily: "Roboto", fontSize: 11, })
+  menu: (styles) => ({ ...styles, width: "120px", fontFamily: "Roboto", fontSize: 11, })
 };
 
 const DificultySelectGroup = () => (
