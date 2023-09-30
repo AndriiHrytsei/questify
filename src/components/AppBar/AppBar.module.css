@@ -1,5 +1,5 @@
 /******** SBROS *********/
-
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
 *,
 *::before,
 *::after {
@@ -80,8 +80,6 @@ select {
 }
 
 /******** SBROS *********/
-
-@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
 
 .header {
   display: flex;
