@@ -1,3 +1,7 @@
+// This code is adapded from the code provided by NaTaLiaMoSKV 
+// On their GitHub repostory: https://github.com/NaTaLiaMoSKV
+// You can find the orginal code hear: https://github.com/NaTaLiaMoSKV/questify/blob/main/src/redux/auth/authOperations.js
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
