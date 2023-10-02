@@ -18,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-    console.log('UseEffect');
   }, [dispatch]);
 
   return isRefreshing ? (
