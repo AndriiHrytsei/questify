@@ -1,4 +1,4 @@
-/******** SBROS *********/
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
 
 *,
 *::before,
@@ -79,9 +79,6 @@ select {
   }
 }
 
-/******** SBROS *********/
-
-@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
 
 .header {
   display: flex;
