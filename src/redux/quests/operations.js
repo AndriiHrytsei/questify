@@ -12,11 +12,30 @@ export const fetchCards = createAsyncThunk(
     }
   }
 );
-export const fetchCardsCompleted = createAsyncThunk(
-  "card/fetchAllCompleted",
+
+export const setCardsCompleted = createAsyncThunk(
+  "card/setAllCompleted",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/card/complete");
+      const response = await axios.patch("/card/complete");
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+export const editCard = createAsyncThunk(
+  "card/editCard",
+  async ({cardId,cardOption}, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/card/${cardId}`,{
+        title: cardOption.title,
+        difficulty: cardOption.difficulty,
+        category: cardOption.category,
+        date: cardOption.date,
+        time: cardOption.time,
+        type: cardOption.type,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -24,17 +43,19 @@ export const fetchCardsCompleted = createAsyncThunk(
   }
 );
 export const addCard = createAsyncThunk(
+
   "contacts/addCard",
-  async (card, thunkAPI) => {
+  async (cardOption, thunkAPI) => {
     try {
-      const response = await axios.post("/card", 
-         card.title,
-         card.difficulty,
-         card.category,
-         card.date,
-         card.time,
-         card.type,
-      );
+      const response = await axios.post("/card", {
+        title: cardOption.title,
+        difficulty: cardOption.difficulty,
+        category: cardOption.category,
+        date: cardOption.date,
+        time: cardOption.time,
+        type: cardOption.type,
+      });
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -43,7 +64,7 @@ export const addCard = createAsyncThunk(
 );
 
 export const deleteCard = createAsyncThunk(
-  "contacts/deleteCard",
+  "card/deleteCard",
   async (cardId, thunkAPI) => {
     try {
       const response = await axios.delete(`/card/${cardId}`);
