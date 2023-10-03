@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Mooli&display=swap");
-
 *,
 *::before,
 *::after {
@@ -78,7 +77,27 @@ select {
     scroll-behavior: auto !important;
   }
 }
-
+@media screen and (max-width: 480px) {
+  .yourName,
+  h4 {
+    display: none;
+  }
+  .yourName {
+    width: 130px;
+    height: 36px;
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+  }
+}
+@media screen and (min-width: 480px) {
+  /* це вообще падло */
+  .yourName {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+  }
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -105,11 +124,7 @@ select {
   color: rgba(255, 255, 255, 1);
   padding: 0;
 }
-.yourName {
-  width: 170px;
-  display: flex;
-  justify-content: center;
-}
+
 .yourName,
 h4 {
   margin-top: 1.5%;
