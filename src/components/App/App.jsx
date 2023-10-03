@@ -7,9 +7,22 @@ import LoginPage from "../../pages/LoginPage";
 import { QuestsPage } from "../../pages/QuestsPage";
 import AuthLayout from "../AuthLayout/AuthLayout";
 import LandingPage from "../../pages/LandingPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "../../redux/auth/operations";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 
 const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <p>Loading...</p>
+  ) : (
     <Routes>
       <Route path="/" element={<AuthLayout />}>
         <Route
@@ -37,7 +50,7 @@ const App = () => {
       <Route
         path="/quests"
         element={
-          <PrivateRoute component={<QuestsPage />} redirectTo="/login" />
+          <PrivateRoute component={<QuestsPage />} redirectTo="/" />
         }
       />
     </Routes>

@@ -1,16 +1,33 @@
-import React from 'react'
+// import React from 'react'
 import QuestCard from '../QuestCard/QuestCard'
 import AddQuestBtn from '../AddQuestBtn/AddQuestBtn'
-// import { getCards } from '../../redux/quests/selectors'
-// import { useSelector } from 'react-redux'
+import { getCards } from '../../redux/quests/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 // import css from './QuestList.css'    
+import { fetchCards } from '../../redux/quests/operations'
 
 export default function QuestList() {
-  // const filteredCards = useSelector(getCards);
+  const cards = useSelector(getCards);
+  console.log(cards);
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchCards())
+  },[dispatch])
+  
 
   return (
     <div>
-      <QuestCard /> 
+      <ul>
+        {cards.length > 0 ? (
+          cards.map((card) => (
+            <QuestCard key={card.id} />
+          ))
+        ) : (
+          <span>No cards</span>
+        )}
+      </ul>
       <div>
         <AddQuestBtn />
       </div>

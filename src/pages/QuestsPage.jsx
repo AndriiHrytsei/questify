@@ -3,6 +3,7 @@ import AppBar from "../components/AppBar/AppBar";
 import QuestList from "../components/QuestList/QuestList";
 
 export function QuestsPage() {
+
   return (
     <HelmetProvider>
       <Helmet>
