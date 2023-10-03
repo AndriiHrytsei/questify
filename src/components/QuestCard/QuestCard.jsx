@@ -5,7 +5,7 @@ import DificultySelectGroup from '../Select/SelectGroup'
 
 export default function QuestCard() {
   return (
-    <div className={css.main}>
+    <form className={css.main}>
         <div className={css.levels}>
             <DificultySelect 
             styles={{
@@ -29,7 +29,7 @@ export default function QuestCard() {
         <div className={css.group}>
             <DificultySelectGroup />
         </div>
-    </div>
+    </form>
   )
 }
 
