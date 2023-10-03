@@ -23,7 +23,6 @@
 
 .svg {
     margin-top: 14px;
-    padding-top: 14px;
 }
 
 .task {
@@ -65,20 +64,15 @@
 
 
 /* input[type="date"]::-webkit-calendar-picker-indicator {
+
+
+/* input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 } */
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
-}
-
-input[type="date"] {
-    background-image: url('input_time');
-    background-size: 16px 16px; 
-    background-repeat: no-repeat;
-    background-position: right center; 
-    fill: #00D7FF;
-}
+} */
 
 .input_time {
     width: 100px;
@@ -86,13 +80,11 @@ input[type="date"] {
     font-family: 'Roboto';
     font-size: 14px;
     border: none;
-
     /* background-image: url('../../../public/calendar.svg');
     background-size: 16px 16px; 
     background-repeat: no-repeat;
     background-position: right center; 
     fill: #00D7FF; */
-
     fill: #00D7FF;
 }
 

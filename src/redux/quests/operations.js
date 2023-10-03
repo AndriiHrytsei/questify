@@ -12,6 +12,7 @@ export const fetchCards = createAsyncThunk(
     }
   }
 );
+
 export const setCardsCompleted = createAsyncThunk(
   "card/setAllCompleted",
   async (_, thunkAPI) => {
@@ -42,7 +43,8 @@ export const editCard = createAsyncThunk(
   }
 );
 export const addCard = createAsyncThunk(
-  "card/addCard",
+
+  "contacts/addCard",
   async (cardOption, thunkAPI) => {
     try {
       const response = await axios.post("/card", {
@@ -53,6 +55,7 @@ export const addCard = createAsyncThunk(
         time: cardOption.time,
         type: cardOption.type,
       });
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

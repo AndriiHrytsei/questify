@@ -13,9 +13,19 @@ export default function QuestList() {
   useEffect(()=>{
     dispatch(fetchCards())
   },[dispatch])
+  
+}
   return (
     <div>
-      <QuestCard /> 
+      <ul>
+        {cards.cards.length > 0 ? (
+          cards.cards.map((card) => (
+            <QuestCard key={card.id} />
+          ))
+        ) : (
+          <span>No cards</span>
+        )}
+      </ul>
       <div>
         <AddQuestBtn />
       </div>
