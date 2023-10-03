@@ -16,7 +16,7 @@ export default function QuestList() {
     dispatch(fetchCards())
   },[dispatch])
   
-}
+
   return (
     <div>
       <ul>
