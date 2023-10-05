@@ -22,7 +22,7 @@
 .formBox {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .formHeading {
@@ -42,6 +42,7 @@ input[name="userName"] {
   padding: 10px 0 10px 9px;
   background-color: transparent;
   outline: none;
+  margin-top: 0;
 }
 
 .goBtn {

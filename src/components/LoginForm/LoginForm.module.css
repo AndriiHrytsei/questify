@@ -21,6 +21,20 @@
   width: 100%;
 }
 
+input[name="email"],
+input[name="password"] {
+  font-family: 'Roboto';
+  border: none;
+  color: #B9C3C8;
+  font-weight: 500;
+  border-bottom: 3px solid #00d7ff;
+  width: 95%;
+  max-width: 27rem;
+  padding: 10px 0 10px 9px;
+  background-color: transparent;
+  outline: none;
+}
+
 .loginSubmit {
   margin-right: 1em;
   background-color: #ff851c;

@@ -38,6 +38,8 @@ const RegisterForm = () => {
           id="password"
           required
           placeholder="Enter your password"
+          minLength={8}
+          pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$'
         />
         <div className={css.submit}>
           <button type="submit" className={css.registerSubmit}>
