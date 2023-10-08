@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, register, refreshUser } from "./operations";
+import {fetchCards,addCard,deleteCard,setCardsCompleted,
+  // editCard
+} from "../quests/operations"
 
 const initialState = {
   user: {
@@ -50,7 +53,73 @@ const authSlice = createSlice({
     [refreshUser.fulfilled](state) {
       state.isLoggedIn = true;
       state.isRefreshing = false;
-    }
+    },
+    [fetchCards.pending](state) {
+      state.error = null
+      state.isLoading = true;
+    },
+    [fetchCards.fulfilled](state, action) {
+      state.isLoading = false;
+      state.user = action.payload;
+    },
+    [fetchCards.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [addCard.pending](state) {
+      state.error = null
+      state.isLoading = true;
+    },
+    [addCard.fulfilled](state, action) {
+      state.isLoading = false;
+      state.user.cards.unshift(action.payload);
+      state.error = null;
+      localStorage.setItem('cards', JSON.stringify(state.cards));
+    },
+    [addCard.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [deleteCard.pending](state) {
+      state.error = null
+      state.isLoading = true;
+    },
+    [deleteCard.fulfilled](state, action) {
+      state.isLoading = false;
+      const index = state.user.cards.findIndex(
+        (card) => card.id === action.payload.id
+      );
+      state.user.cards.splice(index, 1);
+      state.user.cards = action.payload;
+    },
+    [deleteCard.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [setCardsCompleted.pending](state) {
+      state.error = null
+      state.isLoading = true;
+    },
+    [setCardsCompleted.fulfilled](state, action) {
+      state.isLoading = false;
+      state.user.cardsCompleted = action.payload;
+    },
+    [setCardsCompleted.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    // [editCard.pending](state) {
+    //   state.error = null
+    //   state.isLoading = true;
+    // },
+    // [editCard.fulfilled](state, action) {
+    //   state.isLoading = false;
+    //   state.editCards = action.payload;
+    // },
+    // [editCard.rejected](state, action) {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
   },
 });
 
