@@ -1,16 +1,19 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import RestrictedRoute from "../RestrictedRoute";
-import PrivateRoute from "../PrivateRoute";
-import RegisterPage from "../../pages/RegisterPage";
-import LoginPage from "../../pages/LoginPage";
-import { QuestsPage } from "../../pages/QuestsPage";
-import AuthLayout from "../AuthLayout/AuthLayout";
-import LandingPage from "../../pages/LandingPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
+import LoadingPage from "../../pages/LoadingPage";
+
+
+const AuthLayout = lazy(() => import("../AuthLayout/AuthLayout"));
+const RestrictedRoute = lazy(() => import("../RestrictedRoute"));
+const PrivateRoute = lazy(() => import("../PrivateRoute"));
+const LandingPage = lazy(() => import("../../pages/LandingPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage"));
+const RegisterPage = lazy(() => import("../../pages/RegisterPage"));
+const QuestsPage = lazy(() => import("../../pages/QuestsPage"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,39 +24,42 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Loading...</p>
+    <LoadingPage />
   ) : (
-    <Routes>
-      <Route path="/" element={<AuthLayout />}>
+    <Suspense fallback={<LoadingPage />}>
+      <Routes>
+        <Route path="/" element={<AuthLayout />}>
+          <Route
+            index
+            element={
+              <RestrictedRoute
+                component={<LandingPage />}
+                redirectTo="/quests"
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<RegisterPage />}
+                redirectTo="/quests"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/quests" />
+            }
+          />
+        </Route>
         <Route
-          index
-          element={
-            <RestrictedRoute component={<LandingPage />} redirectTo="/quests" />
-          }
+          path="/quests"
+          element={<PrivateRoute component={<QuestsPage />} redirectTo="/" />}
         />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              component={<RegisterPage />}
-              redirectTo="/quests"
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/quests" />
-          }
-        />
-      </Route>
-      <Route
-        path="/quests"
-        element={
-          <PrivateRoute component={<QuestsPage />} redirectTo="/" />
-        }
-      />
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 };
 

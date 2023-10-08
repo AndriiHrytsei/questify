@@ -2,7 +2,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import AppBar from "../components/AppBar/AppBar";
 import QuestList from "../components/QuestList/QuestList";
 
-export function QuestsPage() {
+const QuestsPage = () => {
 
   return (
     <HelmetProvider>
@@ -14,3 +14,5 @@ export function QuestsPage() {
     </HelmetProvider>
   );
 }
+
+export default QuestsPage
