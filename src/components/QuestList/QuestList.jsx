@@ -6,18 +6,23 @@ import { useEffect } from 'react'
 import { fetchCards } from '../../redux/quests/operations'
 
 export default function QuestList() {
+  
   const cards = useSelector(getCards);
+
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
+  useEffect(()=>{
+    dispatch(fetchCards())
+  },[dispatch])
 
   return (
     <div>
       <ul>
-        {cards.length > 0 ? (
-          cards.map((card) => (
-            <QuestCard key={card._id} card={card} />
+        {console.log(cards)}
+        {cards.length > 0 ? ( 
+          cards.map((card) => (            
+            <li key={card._id}>
+              <QuestCard key={card._id}  card={card}/>
+            </li>
           ))
         ) : (
           <span>No cards</span>
