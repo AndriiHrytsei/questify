@@ -12,7 +12,6 @@ export const fetchCards = createAsyncThunk(
     }
   }
 );
-
 export const setCardsCompleted = createAsyncThunk(
   "card/setAllCompleted",
   async (_, thunkAPI) => {
@@ -26,9 +25,9 @@ export const setCardsCompleted = createAsyncThunk(
 );
 export const editCard = createAsyncThunk(
   "card/editCard",
-  async ({cardId,cardOption}, thunkAPI) => {
+  async ({ cardId, cardOption }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/card/${cardId}`,{
+      const response = await axios.patch(`/card/${cardId}`, {
         title: cardOption.title,
         difficulty: cardOption.difficulty,
         category: cardOption.category,
@@ -43,19 +42,10 @@ export const editCard = createAsyncThunk(
   }
 );
 export const addCard = createAsyncThunk(
-
-  "contacts/addCard",
-  async (cardOption, thunkAPI) => {
+  "card/addCard",
+  async ({ title, difficulty, category, date, time, type }, thunkAPI) => {
     try {
-      const response = await axios.post("/card", {
-        title: cardOption.title,
-        difficulty: cardOption.difficulty,
-        category: cardOption.category,
-        date: cardOption.date,
-        time: cardOption.time,
-        type: cardOption.type,
-      });
-
+      const response = await axios.post("/card", {title, difficulty, category, date, time, type});
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

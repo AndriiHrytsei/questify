@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const PrivateRoute = ({ component: Component, redirectTo = "/" }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const shouldRedirect = !isLoggedIn;
-  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+  return shouldRedirect ? <Navigate to={redirectTo} /> : Component
 };
 
 PrivateRoute.propTypes = {
@@ -14,4 +14,4 @@ PrivateRoute.propTypes = {
   redirectTo: PropTypes.string.isRequired,
 };
 
-export default PrivateRoute
+export default PrivateRoute;

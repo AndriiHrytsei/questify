@@ -1,10 +1,8 @@
-// import React from 'react'
 import QuestCard from '../QuestCard/QuestCard'
 import AddQuestBtn from '../AddQuestBtn/AddQuestBtn'
-import { getCards } from '../../redux/quests/selectors'
+import { getCards } from '../../redux/auth/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-// import css from './QuestList.css'    
 import { fetchCards } from '../../redux/quests/operations'
 
 export default function QuestList() {
@@ -16,9 +14,6 @@ export default function QuestList() {
     dispatch(fetchCards())
   },[dispatch])
 
-  // console.log(card);
-  
-
   return (
     <div>
       <ul>
@@ -28,7 +23,6 @@ export default function QuestList() {
             <li key={card._id}>
               <QuestCard key={card._id}  card={card}/>
             </li>
-            
           ))
         ) : (
           <span>No cards</span>
