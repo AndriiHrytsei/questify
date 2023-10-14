@@ -12,5 +12,5 @@
     { value: 'purple', label: 'HEALTH', color: '#CDF7FF' },
     { value: 'red', label: 'LEARNING', color: '#FFF6C0' },
     { value: 'orange', label: 'LEISURE', color: '#F8D2FF' },
-    { value: 'yellow', label: 'WORK', color: '#D3F6CE' }
+    { value: 'yellow', label: 'WORK', color: '#D3F6CE' },
   ];
