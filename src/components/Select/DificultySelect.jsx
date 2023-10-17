@@ -89,24 +89,38 @@ const colourStyles = {
   }),
 };
 
-const DificultySelect = ({ onChange }) => {
+const DificultySelect = ({ onChange,selectedDificulty }) => {
   const [dificultyChoice, setDificultyChoice] = useState("");
-
+  // const [ index , setIndex ] = useState(0);
+  // const checkSelectedDificulty = () => {
+  //   if(selectedDificulty === "Easy"){
+  //     setIndex(0)
+  //   }
+  // }
+  let index;
+  if(selectedDificulty === "Easy"){
+    index = 0
+  }
+  if(selectedDificulty === "Normal"){
+    index = 1
+  }
+  if(selectedDificulty === "Hard"){
+    index = 2
+  }
   console.log(dificultyChoice);
-
+  console.log('index :>> ', index);
   const handleChange = (choice) => {
     setDificultyChoice(choice);
     onChange(choice);
     // e.preventDefault()
   };
 
-  useEffect(() => {
-    console.log(dificultyChoice);
-  }, [dificultyChoice])
-
+  // useEffect(() => {
+  //   checkSelectedDificulty()
+  // }, [checkSelectedDificulty])
   return (
     <Select
-      defaultValue={colourOptionsLevel[2]}
+      defaultValue={colourOptionsLevel[index]}
       options={colourOptionsLevel}
       styles={colourStyles}
       isSearchable={false}
