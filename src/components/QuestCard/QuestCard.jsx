@@ -29,7 +29,7 @@ export default function QuestCard({ card }) {
     dispatch(
       editCard({
         title: form.elements.title.value,
-        dificulty: dificultySelect ? dificultySelect.label : null,
+        difficulty: dificultySelect ? dificultySelect.label : null,
         category: categorySelect ? categorySelect.label : null,
         date: form.elements.date.value,
         time: timeValue,
@@ -38,13 +38,12 @@ export default function QuestCard({ card }) {
       })
     );
   };
-
   return (
     <form className={css.main} onSubmit={handleEdit}>
       <div className={css.levels}>
         <DificultySelect
-          defaultValue={dificultySelect}
-          card={card}
+          selectedDificulty = {card.difficulty}
+          // card={card}
           onChange={(selectedOption) => setdificultySelect(selectedOption)}
           // styles={{
           //   control: (baseStyles, state) => {
@@ -106,8 +105,8 @@ export default function QuestCard({ card }) {
       <div className={css.group}>
         <div>
           <CategorySelect
-            defaultValue={categorySelect}
-            card={card}
+            selectedCategory={card.category}
+            // card={card}
             onChange={(selectedOption) => setCategorySelect(selectedOption)}
           />
         </div>
