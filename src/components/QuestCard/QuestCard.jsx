@@ -1,6 +1,6 @@
 import css from "./QuestCard.module.css";
-import DificultySelect from "../Select/Select";
-import CategorySelect from "../Select/SelectGroup";
+import DificultySelect from "../Select/DificultySelect";
+import CategorySelect from "../Select/CategorySelect";
 import Cross from "../../images/Cross";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/quests/operations";
@@ -11,35 +11,40 @@ import { useState } from "react";
 export default function QuestCard({ card }) {
   const [dificultySelect, setdificultySelect] = useState(null);
   const [categorySelect, setCategorySelect] = useState(null);
+  const [timeValue, setTimeValue] = useState("");
 
   const dispatch = useDispatch();
 
+  const handleTimeChange = (e) => {
+    setTimeValue(e.target.value);
+  };
+
+  console.log(timeValue);
+
   const handleDelete = () => dispatch(deleteCard(card._id));
 
-  // console.log(categorySelect);  
-  // console.log({...dificultySelect, ...categorySelect});
-
   const handleEdit = (e) => {
+    e.preventDefault();
     const form = e.target;
     dispatch(
       editCard({
-        // card._id,
         title: form.elements.title.value,
-        // difficulty: cardOption.difficulty,
+        dificulty: dificultySelect ? dificultySelect.label : null,
+        category: categorySelect ? categorySelect.label : null,
         date: form.elements.date.value,
-        time: form.elements.time.value,
+        time: timeValue,
         type: "Task",
-        category: dificultySelect ? dificultySelect.value : null,
+        id: card._id,
       })
     );
   };
-  // console.log(selectedCategory);
 
   return (
     <form className={css.main} onSubmit={handleEdit}>
       <div className={css.levels}>
         <DificultySelect
           defaultValue={dificultySelect}
+          card={card}
           onChange={(selectedOption) => setdificultySelect(selectedOption)}
           // styles={{
           //   control: (baseStyles, state) => {
@@ -51,7 +56,7 @@ export default function QuestCard({ card }) {
           //       height: state && "20px",
           //     };
           //   },
-          // }} x`
+          // }} `
         />
         <svg
           className={css.svg}
@@ -73,7 +78,8 @@ export default function QuestCard({ card }) {
             type="text"
             className={css.input_text}
             readOnly={false}
-            name="title"
+            name="title"d
+            defaultValue={card.title}
           />
         </div>
         <ul className={css.list_task}>
@@ -83,10 +89,17 @@ export default function QuestCard({ card }) {
               className={css.input_date}
               name="date"
               readOnly={false}
+              defaultValue={card.date}
             />
           </li>
           <li>
-            <input type="time" name="time" className={css.input_time} />
+            <input
+              type="time"
+              name="time"
+              className={css.input_time}
+              onChange={handleTimeChange}
+              defaultValue={card.time}
+            />
           </li>
         </ul>
       </div>
@@ -94,6 +107,7 @@ export default function QuestCard({ card }) {
         <div>
           <CategorySelect
             defaultValue={categorySelect}
+            card={card}
             onChange={(selectedOption) => setCategorySelect(selectedOption)}
           />
         </div>

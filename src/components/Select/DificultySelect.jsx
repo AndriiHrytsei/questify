@@ -1,6 +1,6 @@
 // import React from 'react';
-// import { useEffect, useState } from "react";
-// import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import chroma from "chroma-js";
 
 import { colourOptionsLevel } from "../docs/data";
@@ -89,20 +89,20 @@ const colourStyles = {
   }),
 };
 
-const DificultySelect = () => {
-  // const [dificultyChoice, setDificultyChoice] = useState("");
+const DificultySelect = ({ onChange }) => {
+  const [dificultyChoice, setDificultyChoice] = useState("");
 
-  // // console.log(dificultyChoice);
+  console.log(dificultyChoice);
 
-  // const handleChange = (choice) => {
-  //   setDificultyChoice(choice);
-  //   onChange(choice);
-  //   // e.preventDefault()
-  // };
+  const handleChange = (choice) => {
+    setDificultyChoice(choice);
+    onChange(choice);
+    // e.preventDefault()
+  };
 
-  // useEffect(() => {
-  //   // console.log(dificultyChoice);
-  // }, [dificultyChoice])
+  useEffect(() => {
+    console.log(dificultyChoice);
+  }, [dificultyChoice])
 
   return (
     <Select
@@ -113,13 +113,13 @@ const DificultySelect = () => {
       components={{
         IndicatorSeparator: () => null,
       }}
-      // onChange={(e) => handleChange(e.target.value)}
+      onChange={(choice) => handleChange(choice)}
     />
   );
 };
 
 export default DificultySelect;
 
-// Select.propTypes = {
-//   card: PropTypes.object.isRequired,
-// };
+DificultySelect.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

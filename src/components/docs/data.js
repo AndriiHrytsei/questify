@@ -7,10 +7,10 @@
 
   
   export const colourOptions = [
-    { value: 'ocean', label: 'STUFF', color: '#B9C3C8' },
-    { value: 'blue', label: 'FAMILY', color: '#FFE6D3'  },
-    { value: 'purple', label: 'HEALTH', color: '#CDF7FF' },
-    { value: 'red', label: 'LEARNING', color: '#FFF6C0' },
-    { value: 'orange', label: 'LEISURE', color: '#F8D2FF' },
-    { value: 'yellow', label: 'WORK', color: '#D3F6CE' },
+    { value: 'ocean', label: 'Stuff', color: '#B9C3C8' },
+    { value: 'blue', label: 'Family', color: '#FFE6D3'  },
+    { value: 'purple', label: 'Health', color: '#CDF7FF' },
+    { value: 'red', label: 'Learning', color: '#FFF6C0' },
+    { value: 'orange', label: 'Leisure', color: '#F8D2FF' },
+    { value: 'yellow', label: 'Work', color: '#D3F6CE' },
   ];

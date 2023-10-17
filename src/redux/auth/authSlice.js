@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, register, refreshUser } from "./operations";
-import {fetchCards,addCard,deleteCard,setCardsCompleted,
-  // editCard
-} from "../quests/operations"
+import {
+  fetchCards,
+  addCard,
+  deleteCard,
+  setCardsCompleted,
+  editCard,
+} from "../quests/operations";
 
 const initialState = {
   user: {
@@ -13,7 +17,7 @@ const initialState = {
   isLoggedIn: false,
   userName: "",
   token: null,
-  isRefreshing: false
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -45,17 +49,17 @@ const authSlice = createSlice({
       state.userName = "";
     },
     [refreshUser.pending](state) {
-      state.isRefreshing = true
+      state.isRefreshing = true;
     },
     [refreshUser.rejected](state) {
-      state.isRefreshing = false
+      state.isRefreshing = false;
     },
     [refreshUser.fulfilled](state) {
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
     [fetchCards.pending](state) {
-      state.error = null
+      state.error = null;
       state.isLoading = true;
     },
     [fetchCards.fulfilled](state, action) {
@@ -67,21 +71,21 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     [addCard.pending](state) {
-      state.error = null
+      state.error = null;
       state.isLoading = true;
     },
     [addCard.fulfilled](state, action) {
       state.isLoading = false;
       state.user.cards.unshift(action.payload);
       state.error = null;
-      localStorage.setItem('cards', JSON.stringify(state.user.cards));
+      localStorage.setItem("cards", JSON.stringify(state.user.cards));
     },
     [addCard.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
     [deleteCard.pending](state) {
-      state.error = null
+      state.error = null;
       state.isLoading = true;
     },
     // deleteContact(state, action) {
@@ -91,20 +95,20 @@ const authSlice = createSlice({
     [deleteCard.fulfilled](state, action) {
       // state.isLoading = false;
       // state.user.cards = state.user.cards.filter(card => card._id !== action.payload)
-      
+
       const index = state.user.cards.findIndex(
         (card) => card.id === action.payload.id
       );
       state.user.cards.splice(index, 1);
       // state.user.cards = action.payload;
-      localStorage.setItem('cards', JSON.stringify(state.user.cards));
+      localStorage.setItem("cards", JSON.stringify(state.user.cards));
     },
     [deleteCard.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
     [setCardsCompleted.pending](state) {
-      state.error = null
+      state.error = null;
       state.isLoading = true;
     },
     [setCardsCompleted.fulfilled](state, action) {
@@ -115,18 +119,31 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    // [editCard.pending](state) {
-    //   state.error = null
-    //   state.isLoading = true;
-    // },
-    // [editCard.fulfilled](state, action) {
-    //   state.isLoading = false;
-    //   state.editCards = action.payload;
-    // },
-    // [editCard.rejected](state, action) {
-    //   state.isLoading = false;
-    //   state.error = action.payload;
-    // },
+    [editCard.pending](state) {
+      state.error = null;
+      state.isLoading = true;
+    },
+    [editCard.fulfilled](state, action) {
+      state.isLoading = false;
+      const { _id, title, difficulty, category, date, time, type, status } =
+        action.payload.editedCard;
+      const cardIndex = state.user.cards.findIndex((card) => card._id === _id);
+      state.user.cards[cardIndex] = {
+        ...state.user.cards[cardIndex],
+        title,
+        difficulty,
+        category,
+        date,
+        time,
+        type,
+        status,
+      };
+      localStorage.setItem("cards", JSON.stringify(state.user.cards));
+    },
+    [editCard.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 

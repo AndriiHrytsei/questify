@@ -14,7 +14,7 @@ const AppBar = () => {
             <h4>{userName}&#39;s Quest Log</h4>
           </div>
         </div>
-
+ 
         <LogOutBtn />
       </div>
     </section>

@@ -6,7 +6,7 @@
 }
 
 ul,
-ol {
+ol { 
   padding: 0;
 }
 
@@ -107,6 +107,7 @@ select {
   height: 70px;
   box-shadow: 0px 4px 4px 0px rgba(36, 42, 55, 0.1);
   display: flex;
+  margin-bottom: 60px;
 }
 
 .itsJ {

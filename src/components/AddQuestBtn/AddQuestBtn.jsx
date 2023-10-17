@@ -9,7 +9,7 @@ export default function AddQuestBtn() {
   const click = () => {
     dispatch(
       addCard({
-        title: "Take out the trash",
+        title: "Title",
         difficulty: "Easy",
         category: "Stuff",
         date: "2020-12-31",

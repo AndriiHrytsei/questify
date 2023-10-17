@@ -1,7 +1,7 @@
 // import React from "react";
 import chroma from "chroma-js";
-// import PropTypes from "prop-types";
-// import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
 
 import { colourOptions } from "../docs/data";
@@ -57,15 +57,6 @@ const colourStyles = {
         : isFocused
         ? color.alpha(0.1).css()
         : undefined,
-      // color: isDisabled
-      //   ? "#ccc"
-      //   : isSelected
-      //   ? chroma.contrast(color, "white") > 2
-      //     ? "white"
-      //     : "black"
-      //   : data.color,
-      // cursor: isDisabled ? "not-allowed" : "default",
-
       ":active": {
         ...styles[":active"],
         backgroundColor: !isDisabled
@@ -85,20 +76,20 @@ const colourStyles = {
   menu: (styles) => ({ ...styles, width: "120px", fontFamily: "Roboto", fontSize: 11, })
 };
 
-const DificultySelectGroup = () => {
-  // const [categoryChoice, setCategoryChoice] = useState(""); 
+const DificultySelectGroup = ({ onChange }) => {
+  const [categoryChoice, setCategoryChoice] = useState(""); 
 
-  // // console.log(categoryChoice);
+  console.log(categoryChoice);
 
-  // const handleOnChange = (choice) => {
-  //   setCategoryChoice(choice);
-  //   onChange(choice);
-  //   // e.preventDefault()
-  // }
+  const handleOnChange = (choice) => {
+    setCategoryChoice(choice);
+    onChange(choice);
+    // e.preventDefault()
+  }
 
-  // useEffect(() => {
-  //   // console.log(categoryChoice);
-  // }, [categoryChoice])
+  useEffect(() => {
+    console.log(categoryChoice);
+  }, [categoryChoice])
 
   return (
     <Select
@@ -109,13 +100,13 @@ const DificultySelectGroup = () => {
       components={{
         IndicatorSeparator: () => null
       }}
-      // onChange={(choice) => handleOnChange(choice)}
+      onChange={(choice) => handleOnChange(choice)}
     />
   )
   };
 
-export default DificultySelectGroup
+export default DificultySelectGroup;
 
-// DificultySelectGroup.propTypes = {
-//   card: PropTypes.object.isRequired,
-// }
+DificultySelectGroup.propTypes = {
+  onChange: PropTypes.func.isRequired,
+}
