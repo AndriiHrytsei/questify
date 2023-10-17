@@ -1,14 +1,13 @@
 * {
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
 .main {
     width: 224px;
     height: 208px;
     border-radius: 10px;
-    margin-top: 20px;
-    margin-left: 20px;
     background: #FFF;
     box-shadow: 3px 4px 4px 0px rgba(21, 57, 90, 0.03), -3px -4px 4px 0px rgba(21, 57, 90, 0.03);
 }
@@ -30,10 +29,16 @@
 }
 
 .list_task {
-    list-style: none;
+    width: 224px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.task_input {
+    display: flex;
+    justify-content: center;
 }
 
 .input_text {
@@ -66,13 +71,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 } 
 
-.input_time {
-    width: 100px;
-    margin-top: 10px;
+.input_date {
+    width: 75px;
+    /* margin-top: 10px; */
     font-family: 'Roboto';
     font-size: 14px;
     border: none;
     fill: #00D7FF;
+}
+
+.input_time {
+    width: 30px;
+    border: none;
 }
 
 .item {
@@ -94,4 +104,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 0px 15px 15px 0px;
     background: #D3F6CE;
     padding: 8px 32px 6px 21px;
+}
+
+.list_buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.start {
+    color: #00D7FF;
+    text-align: right;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    border-left: 1px solid #B9C3C8;
+    padding-left: 8px;
+}
+
+.cross {
+    padding-right: 8px;
 }

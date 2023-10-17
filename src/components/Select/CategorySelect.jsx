@@ -1,5 +1,8 @@
 // import React from "react";
 import chroma from "chroma-js";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+
 
 import { colourOptions } from "../docs/data";
 import Select from "react-select";
@@ -20,8 +23,9 @@ const dot = (color = "transparent") => ({
 });
 
 const colourStyles = {
-  control: (styles, { selectProps }) => {
-    const selectedColor = selectProps.value.color;
+  control: (styles, state) => {
+    // console.log(state.selectProps);
+    const selectedColor = state.selectProps.value.color;
     return {
       ...styles,
       transformOrigin: '0 0',
@@ -53,15 +57,6 @@ const colourStyles = {
         : isFocused
         ? color.alpha(0.1).css()
         : undefined,
-      // color: isDisabled
-      //   ? "#ccc"
-      //   : isSelected
-      //   ? chroma.contrast(color, "white") > 2
-      //     ? "white"
-      //     : "black"
-      //   : data.color,
-      // cursor: isDisabled ? "not-allowed" : "default",
-
       ":active": {
         ...styles[":active"],
         backgroundColor: !isDisabled
@@ -81,20 +76,37 @@ const colourStyles = {
   menu: (styles) => ({ ...styles, width: "120px", fontFamily: "Roboto", fontSize: 11, })
 };
 
-const DificultySelectGroup = () => (
-  <Select
-    defaultValue={colourOptions[2]}
-    options={colourOptions}
-    styles={colourStyles}
-    isSearchable={false}
-    // isDisabled = {true}
-    components={{
-      // DropdownIndicator: () => true,
-      IndicatorSeparator: () => null
-    }}
-    // minMenuHeight={30}
-    // minMenuHeight = {10}
-  />
-);
+const DificultySelectGroup = ({ onChange }) => {
+  const [categoryChoice, setCategoryChoice] = useState(""); 
 
-export default DificultySelectGroup
+  console.log(categoryChoice);
+
+  const handleOnChange = (choice) => {
+    setCategoryChoice(choice);
+    onChange(choice);
+    // e.preventDefault()
+  }
+
+  useEffect(() => {
+    console.log(categoryChoice);
+  }, [categoryChoice])
+
+  return (
+    <Select
+      defaultValue={colourOptions[2]}
+      options={colourOptions}
+      styles={colourStyles}
+      isSearchable={false}
+      components={{
+        IndicatorSeparator: () => null
+      }}
+      onChange={(choice) => handleOnChange(choice)}
+    />
+  )
+  };
+
+export default DificultySelectGroup;
+
+DificultySelectGroup.propTypes = {
+  onChange: PropTypes.func.isRequired,
+}

@@ -5,3 +5,10 @@
     justify-content: end;
     background: red;
 }
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 32px;
+    padding-left: 16px;
+}
