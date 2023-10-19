@@ -12,3 +12,9 @@
     gap: 18px 32px;
     padding-left: 16px;
 }
+
+.container {
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+}

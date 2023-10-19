@@ -1,14 +1,8 @@
-.container {
-    z-index: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
 .btn {
     background-color: #FF851C;
     height: 52px;
     width: 52px;
-    border-radius: 50%;
+    border-radius: 50%; 
     border: 2px solid #FF851C;
     display: flex;
     justify-content: center;

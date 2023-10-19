@@ -31,7 +31,7 @@ export default function QuestList() {
           <span>No cards</span>
         )}
       </ul>
-      <div>
+      <div className={css.container}>
         <AddQuestBtn />
       </div>
     </>
