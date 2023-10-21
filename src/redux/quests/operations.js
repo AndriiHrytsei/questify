@@ -14,9 +14,9 @@ export const fetchCards = createAsyncThunk(
 );
 export const setCardsCompleted = createAsyncThunk(
   "card/setAllCompleted",
-  async (_, thunkAPI) => {
+  async (cardId, thunkAPI) => {
     try {
-      const response = await axios.patch("/card/complete");
+      const response = await axios.patch(`/card/complete/${cardId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -7,14 +7,29 @@
 }
 
 .list {
-    display: flex;
-    flex-wrap: wrap;
     gap: 18px 32px;
     padding-left: 16px;
 }
-
+.containerLevel{
+    display: flex;
+    flex-wrap: wrap;
+}
 .container {
     z-index: 1;
     display: flex;
     justify-content: flex-end;
+}
+.classTitle{
+    color: #282828;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    margin-top: 30px;
+    margin-bottom: 18px;
+}
+.classTitle:nth-child(1){
+    margin-top: 0;
 }
