@@ -89,7 +89,7 @@ const colourStyles = {
   }),
 };
 
-const DificultySelect = ({ onChange,selectedDificulty }) => {
+const DificultySelect = ({ onChange,selectedDificulty,stateCard }) => {
   const [dificultyChoice, setDificultyChoice] = useState("");
   // const [ index , setIndex ] = useState(0);
   // const checkSelectedDificulty = () => {
@@ -124,9 +124,8 @@ const DificultySelect = ({ onChange,selectedDificulty }) => {
       options={colourOptionsLevel}
       styles={colourStyles}
       isSearchable={false}
-      components={{
-        IndicatorSeparator: () => null,
-      }}
+      isDisabled = {stateCard}
+      components={stateCard === true ? ({DropdownIndicator: () => true,IndicatorSeparator: () => null}) : ({IndicatorSeparator: () => null})}
       onChange={(choice) => handleChange(choice)}
     />
   );

@@ -80,7 +80,7 @@ const colourStyles = {
   }),
 };
 
-const DificultySelectGroup = ({ onChange, selectedCategory }) => {
+const DificultySelectGroup = ({ onChange, selectedCategory,stateCard }) => {
   const [categoryChoice, setCategoryChoice] = useState("");
 
   console.log(categoryChoice);
@@ -124,9 +124,8 @@ const DificultySelectGroup = ({ onChange, selectedCategory }) => {
       options={colourOptions}
       styles={colourStyles}
       isSearchable={false}
-      components={{
-        IndicatorSeparator: () => null,
-      }}
+      isDisabled = {stateCard}
+      components={stateCard === true ? ({DropdownIndicator: () => true,IndicatorSeparator: () => null}) : ({IndicatorSeparator: () => null})}
       onChange={(choice) => handleOnChange(choice)}
     />
   );

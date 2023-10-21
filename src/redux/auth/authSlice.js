@@ -88,19 +88,11 @@ const authSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     },
-    // deleteContact(state, action) {
-    //   state.contacts = state.contacts.filter(contact => contact.name !== action.payload);
-    //   state.filteredContacts = state.filteredContacts.filter(contact => contact.name !== action.payload);
-    // },
     [deleteCard.fulfilled](state, action) {
-      // state.isLoading = false;
-      // state.user.cards = state.user.cards.filter(card => card._id !== action.payload)
-
       const index = state.user.cards.findIndex(
         (card) => card.id === action.payload.id
       );
       state.user.cards.splice(index, 1);
-      // state.user.cards = action.payload;
       localStorage.setItem("cards", JSON.stringify(state.user.cards));
     },
     [deleteCard.rejected](state, action) {
@@ -113,7 +105,16 @@ const authSlice = createSlice({
     },
     [setCardsCompleted.fulfilled](state, action) {
       state.isLoading = false;
-      state.user.cardsCompleted = action.payload;
+      const { _id, title, difficulty, category, date, time, type, status } = action.payload.completedCard;
+
+      const cardIndex = state.user.cards.findIndex(
+        card => card._id === _id
+      );
+
+      state.user.cards[cardIndex] = {
+        ...state.user.cards[cardIndex], title, difficulty, category, date, time, type, status
+      };
+      localStorage.setItem('cards', JSON.stringify(state.cards));
     },
     [setCardsCompleted.rejected](state, action) {
       state.isLoading = false;

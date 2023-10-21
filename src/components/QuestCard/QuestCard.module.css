@@ -56,7 +56,21 @@
     display: block;   
     box-sizing: border-box;
 }
-
+.input_text_noActive {
+    width: 163px;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    margin-bottom: 2px; 
+    border-color: #FFF;
+    border-left: #FFF;
+    border-top: #FFF;
+    caret-color: #00D7FF;
+    display: block;   
+    box-sizing: border-box;
+    text-align: center;
+}
 .input_text:active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
@@ -72,7 +86,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 } 
 
 .input_date {
-    width: 75px;
+    width: 140px;
     /* margin-top: 10px; */
     font-family: 'Roboto';
     font-size: 14px;

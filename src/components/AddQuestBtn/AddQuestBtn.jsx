@@ -40,4 +40,3 @@ export default function AddQuestBtn() {
   );
 }
 
-// Invalid 'date'. Please, use YYYY-MM-DD string format
