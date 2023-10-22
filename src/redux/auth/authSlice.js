@@ -90,7 +90,7 @@ const authSlice = createSlice({
     },
     [deleteCard.fulfilled](state, action) {
       const index = state.user.cards.findIndex(
-        (card) => card.id === action.payload.id
+        (card) => card._id === action.meta.arg
       );
       state.user.cards.splice(index, 1);
       localStorage.setItem("cards", JSON.stringify(state.user.cards));
