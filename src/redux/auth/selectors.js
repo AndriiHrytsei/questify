@@ -6,7 +6,8 @@ export const selectUserName = (state) => state.auth.userName;
 
 export const selectIsRefreshing = (state) => state.auth.isRefreshing;
 
-export const getCards = state => state.auth.user.cards;
+export const getCards = (state) => state.auth.user.cards;
 
-export const getSetCardsCompleted = state => state.auth.user.cardsCompleted;
+export const getSetCardsCompleted = (state) => state.auth.user.cardsCompleted;
 
+export const selectIsCreating = (state) => state.auth.isCreating;

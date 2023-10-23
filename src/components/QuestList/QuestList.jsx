@@ -2,19 +2,22 @@ import QuestCard from "../QuestCard/QuestCard";
 import AddQuestBtn from "../AddQuestBtn/AddQuestBtn";
 import { getCards } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCards } from "../../redux/quests/operations";
 import css from "./QuestList.module.css";
 
 export default function QuestList() {
+  const [cardState, setCardState] = useState(null)
   const cards = useSelector(getCards);
   const dispatch = useDispatch();
+
+  const getCardState = (data) => {
+    setCardState(data)
+  }
 
   useEffect(() => {
     dispatch(fetchCards());
   }, [dispatch]);
-
-  console.log(cards);
 
   return (
     <>
@@ -28,7 +31,7 @@ export default function QuestList() {
                 .filter((card) => card.status !== "Complete")
                 .map((card) => (
                   <li key={card._id}>
-                    <QuestCard card={card} />
+                    <QuestCard card={card} defaultCardState={cardState}/>
                   </li>
                 ))}
             </div>
@@ -39,7 +42,7 @@ export default function QuestList() {
                 .filter((card) => card.status === "Complete")
                 .map((card) => (
                   <li key={card._id}>
-                    <QuestCard card={card} />
+                    <QuestCard card={card} defaultCardState={cardState}/>
                   </li>
                 ))}
             </div>
@@ -49,7 +52,7 @@ export default function QuestList() {
         )}
       </ul>
       <div className={css.container}>
-        <AddQuestBtn />
+        <AddQuestBtn questState={getCardState}/>
       </div>
     </>
   );

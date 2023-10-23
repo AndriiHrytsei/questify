@@ -1,12 +1,23 @@
 // import React from 'react'
 import css from "./AddQuestBtn.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../../redux/quests/operations";
+import { setIsCreating } from "../../redux/auth/authSlice";
+import { selectIsCreating } from "../../redux/auth/selectors";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export default function AddQuestBtn() {
+export default function AddQuestBtn({ questState }) {
+  const [cardState, setCardState] = useState(true)
   const dispatch = useDispatch();
+  const isCreating = useSelector(selectIsCreating);
+
+  useEffect(() => {
+    questState(cardState)
+  }, [cardState, questState])
 
   const click = () => {
+    setCardState(false)
     dispatch(
       addCard({
         title: "Title",
@@ -17,11 +28,17 @@ export default function AddQuestBtn() {
         type: "Task",
       })
     );
-  }; 
+    dispatch(setIsCreating());
+  };
 
   return (
     <>
-      <button className={css.btn} onClick={click} type="submit">
+      <button
+        className={css.btn}
+        onClick={click}
+        type="submit"
+        disabled={isCreating}
+      >
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -40,3 +57,6 @@ export default function AddQuestBtn() {
   );
 }
 
+AddQuestBtn.propTypes = {
+  questState: PropTypes.func.isRequired
+}

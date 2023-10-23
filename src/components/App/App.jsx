@@ -8,9 +8,9 @@ import LoadingPage from "../../pages/LoadingPage";
 
 
 const AuthLayout = lazy(() => import("../AuthLayout/AuthLayout"));
+const LandingPage = lazy(() => import("../../pages/LandingPage"));
 const RestrictedRoute = lazy(() => import("../RestrictedRoute"));
 const PrivateRoute = lazy(() => import("../PrivateRoute"));
-const LandingPage = lazy(() => import("../../pages/LandingPage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../../pages/RegisterPage"));
 const QuestsPage = lazy(() => import("../../pages/QuestsPage"));

@@ -18,6 +18,8 @@ const initialState = {
   userName: "",
   token: null,
   isRefreshing: false,
+  isCreating: false,
+  isEditing: false,
 };
 
 const authSlice = createSlice({
@@ -27,6 +29,12 @@ const authSlice = createSlice({
     getUserName(state, action) {
       state.userName = action.payload;
       localStorage.setItem("userName", JSON.stringify(state.userName));
+    },
+    setIsCreating(state) {
+      state.isCreating = true;
+    },
+    unsetIsCreating(state) {
+      state.isCreating = false;
     },
   },
   extraReducers: {
@@ -105,16 +113,22 @@ const authSlice = createSlice({
     },
     [setCardsCompleted.fulfilled](state, action) {
       state.isLoading = false;
-      const { _id, title, difficulty, category, date, time, type, status } = action.payload.completedCard;
+      const { _id, title, difficulty, category, date, time, type, status } =
+        action.payload.completedCard;
 
-      const cardIndex = state.user.cards.findIndex(
-        card => card._id === _id
-      );
+      const cardIndex = state.user.cards.findIndex((card) => card._id === _id);
 
       state.user.cards[cardIndex] = {
-        ...state.user.cards[cardIndex], title, difficulty, category, date, time, type, status
+        ...state.user.cards[cardIndex],
+        title,
+        difficulty,
+        category,
+        date,
+        time,
+        type,
+        status,
       };
-      localStorage.setItem('cards', JSON.stringify(state.cards));
+      localStorage.setItem("cards", JSON.stringify(state.cards));
     },
     [setCardsCompleted.rejected](state, action) {
       state.isLoading = false;
@@ -149,4 +163,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { getUserName } = authSlice.actions;
+export const { getUserName, setIsCreating, unsetIsCreating, setIsEditing, unsetIsEditing } = authSlice.actions;

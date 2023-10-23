@@ -11,19 +11,26 @@ import {
 } 
 from "../../redux/quests/operations";
 import { useState } from "react";
+import { unsetIsCreating } from "../../redux/auth/authSlice";
 
-export default function QuestCard({ card }) {
+
+export default function QuestCard({ card, defaultCardState }) {
   const [dificultySelect, setdificultySelect] = useState(null);
   const [categorySelect, setCategorySelect] = useState(null);
-  const [stateCard, setStateCard] = useState(true);
+  const [stateCard, setStateCard] = useState(defaultCardState);
   const dispatch = useDispatch();
-
 
   const updaitStateDoubleClick = () => {
     setStateCard(false);
   };
-  const handleDelete = () => dispatch(deleteCard(card._id));
-  const handleCompleteCard = () => dispatch(setCardsCompleted(card._id));
+  const handleDelete = () => {
+    dispatch(deleteCard(card._id))
+    dispatch(unsetIsCreating())
+  };
+  const handleCompleteCard = () => {
+    setStateCard(true)
+    dispatch(setCardsCompleted(card._id))
+  };
   const handleEdit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,6 +47,7 @@ export default function QuestCard({ card }) {
         id: card._id,
       })
     );
+    dispatch(unsetIsCreating())
     setStateCard(true);
   };
   return (
@@ -87,9 +95,8 @@ export default function QuestCard({ card }) {
           <input
             type="text"
             className={stateCard ? css.input_text_noActive : css.input_text}
-            readOnly={stateCard === true ? true : false}
+            readOnly={stateCard}
             name="title"
-            d
             defaultValue={card.title}
           />
         </div>
@@ -99,7 +106,7 @@ export default function QuestCard({ card }) {
               type="datetime-local"
               className={css.input_date}
               name="date"
-              readOnly={stateCard === true ? true : false}
+              readOnly={stateCard}
               defaultValue={`${card.date} ${card.time}`}
             />
           </li>
@@ -140,4 +147,5 @@ export default function QuestCard({ card }) {
 
 QuestCard.propTypes = {
   card: PropTypes.object.isRequired,
+  defaultCardState: PropTypes.bool.isRequired
 };
