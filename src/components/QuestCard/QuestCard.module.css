@@ -11,7 +11,40 @@
     background: #FFF;
     box-shadow: 3px 4px 4px 0px rgba(21, 57, 90, 0.03), -3px -4px 4px 0px rgba(21, 57, 90, 0.03);
 }
-
+.textContinuen{
+    color: #000;
+    font-family: 'Roboto';
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    margin: 0 0 10px 20px;
+    padding-top: 21px;
+}
+.backToCard{
+    color: #00D7FF;
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    margin-left: 5px;
+}
+.photoContineunCard{
+    margin: 0 40px;
+}
+.buttonContineun{
+    color: #B9C3C8;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 80px;
+}
 .levels {
     padding-top: 15px;
     display: flex;
