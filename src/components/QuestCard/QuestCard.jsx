@@ -11,33 +11,39 @@ import {
 } from "../../redux/quests/operations";
 import { useState } from "react";
 import { unsetIsCreating } from "../../redux/auth/authSlice";
+import Tick from "../../images/Tick";
+import TrashBin from "../../images/TrashBin";
 
 export default function QuestCard({ card, defaultCardState }) {
   const [dificultySelect, setdificultySelect] = useState(null);
   const [categorySelect, setCategorySelect] = useState(null);
-  const [stateCard, setStateCard] = useState(defaultCardState);
+  const [stateCard, setStateCard] = useState(defaultCardState ?? true);
   const [confirmationPage, setConfirmationPage] = useState(false);
   const dispatch = useDispatch();
 
   const updaitStateDoubleClick = () => {
     setStateCard(false);
   };
+
   const handleConfirmationPage = () => {
-    if(card.status === "Complete"){
+    if (card.status === "Complete") {
       setConfirmationPage(false);
-    }else{
+    } else {
       setConfirmationPage(true);
     }
   };
+
   const handleDelete = () => {
     dispatch(deleteCard(card._id));
     dispatch(unsetIsCreating());
   };
+
   const handleCompleteCard = () => {
     setStateCard(true);
     dispatch(setCardsCompleted(card._id));
     setConfirmationPage(false);
   };
+
   const handleEdit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -57,6 +63,13 @@ export default function QuestCard({ card, defaultCardState }) {
     dispatch(unsetIsCreating());
     setStateCard(true);
   };
+  
+  const cancelChanges = () => {
+    dispatch(editCard({...card, id: card._id}))
+    dispatch(unsetIsCreating());
+    setStateCard(true);
+  }
+
   return (
     <form
       className={css.main}
@@ -67,15 +80,23 @@ export default function QuestCard({ card, defaultCardState }) {
         <>
           <h3 className={css.textContinuen}>
             Completed:
-            <button type="button" className={css.backToCard} onClick={() => {setConfirmationPage(false)}}>
-              Visit the dentist...
+            <button
+              type="button"
+              className={css.backToCard}
+              onClick={() => {
+                setConfirmationPage(false);
+              }}
+            >
+              {card.title.length > 16
+                ? `${card.title.slice(0, 16)}...`
+                : card.title}
             </button>
           </h3>
           <svg
             className={css.photoContineunCard}
             xmlns="http://www.w3.org/2000/svg"
             width="144"
-            height="124"
+            height="154"
             viewBox="0 0 144 124"
             fill="none"
           >
@@ -268,7 +289,11 @@ export default function QuestCard({ card, defaultCardState }) {
               fill="#FF9557"
             />
           </svg>
-          <button type="button" className={css.buttonContineun} onClick={handleCompleteCard}>
+          <button
+            type="button"
+            className={css.buttonContineun}
+            onClick={handleCompleteCard}
+          >
             Continue
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -343,17 +368,22 @@ export default function QuestCard({ card, defaultCardState }) {
               <div>
                 <ul className={css.list_buttons}>
                   <li>
+                    <button type="button" className={css.trashBin} onClick={handleDelete}>
+                      <TrashBin />
+                    </button>
+                  </li>
+                  <li>
                     <button
                       type="button"
-                      onClick={handleDelete}
                       className={css.cross}
+                      onClick={cancelChanges}
                     >
                       <Cross />
                     </button>
                   </li>
                   <li>
                     <button type="submit" className={css.start}>
-                      START
+                      <Tick />
                     </button>
                   </li>
                 </ul>
@@ -368,5 +398,5 @@ export default function QuestCard({ card, defaultCardState }) {
 
 QuestCard.propTypes = {
   card: PropTypes.object.isRequired,
-  defaultCardState: PropTypes.bool.isRequired,
+  defaultCardState: PropTypes.bool,
 };

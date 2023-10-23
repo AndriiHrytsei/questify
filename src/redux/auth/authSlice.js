@@ -7,6 +7,7 @@ import {
   setCardsCompleted,
   editCard,
 } from "../quests/operations";
+import Notiflix from "notiflix";
 
 const initialState = {
   user: {
@@ -41,10 +42,28 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       state.user = action.payload;
     },
+    [register.rejected](state) {
+      state.user = {
+        email: null,
+        id: "",
+        cards: [],
+      },
+      Notiflix.Notify.failure("Account already exists")
+    },
     [login.fulfilled](state, action) {
       state.user = action.payload.userData;
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
+    },
+    [login.rejected](state) {
+      state.user = {
+        email: null,
+        id: "",
+        cards: [],
+      },
+      state.token = null;
+      state.isLoggedIn = false;
+      Notiflix.Notify.failure('Invalid email or password')
     },
     [logout.fulfilled](state) {
       state.user = {
@@ -158,6 +177,7 @@ const authSlice = createSlice({
     [editCard.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+      Notiflix.Notify.failure('All of the quest fields must not be empty')
     },
   },
 });

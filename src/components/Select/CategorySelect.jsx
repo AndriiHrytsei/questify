@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import React from "react";
 import chroma from "chroma-js";
 import PropTypes from "prop-types";
@@ -36,7 +37,7 @@ const colourStyles = {
       borderRadius: "50px",
       borderTopLeftRadius: "0",
       borderBottomLeftRadius: "0",
-      fontSize: 11,
+      fontSize: 16,
       boxShadow: "none",
       outLine: "none",
       border: 0,
@@ -83,7 +84,6 @@ const colourStyles = {
 const DificultySelectGroup = ({ onChange, selectedCategory,stateCard }) => {
   const [categoryChoice, setCategoryChoice] = useState("");
 
-  console.log(categoryChoice);
   let index;
   switch (selectedCategory) {
     case "Stuff":
@@ -111,12 +111,7 @@ const DificultySelectGroup = ({ onChange, selectedCategory,stateCard }) => {
   const handleOnChange = (choice) => {
     setCategoryChoice(choice);
     onChange(choice);
-    // e.preventDefault()
   };
-
-  useEffect(() => {
-    console.log(categoryChoice);
-  }, [categoryChoice]);
 
   return (
     <Select
@@ -135,4 +130,6 @@ export default DificultySelectGroup;
 
 DificultySelectGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.string,
+  stateCard: PropTypes.bool,
 };
