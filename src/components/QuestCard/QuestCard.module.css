@@ -76,17 +76,17 @@
     outline-offset: 0;
 }
 
-.input_text:focus {
+/* .input_text:focus {
     padding-left: 7px;
     padding-bottom: 3px;
-}
+} */
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 } 
 
 .input_date {
-    width: 140px;
+    /* width: 160px; */
     /* margin-top: 10px; */
     font-family: 'Roboto';
     font-size: 14px;
