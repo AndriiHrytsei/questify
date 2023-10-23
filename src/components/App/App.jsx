@@ -7,8 +7,8 @@ import { selectIsRefreshing } from "../../redux/auth/selectors";
 import LoadingPage from "../../pages/LoadingPage";
 
 
-const AuthLayout = lazy(() => import("../AuthLayout/AuthLayout"));
 const LandingPage = lazy(() => import("../../pages/LandingPage"));
+const AuthLayout = lazy(() => import("../AuthLayout/AuthLayout"));
 const RestrictedRoute = lazy(() => import("../RestrictedRoute"));
 const PrivateRoute = lazy(() => import("../PrivateRoute"));
 const LoginPage = lazy(() => import("../../pages/LoginPage"));

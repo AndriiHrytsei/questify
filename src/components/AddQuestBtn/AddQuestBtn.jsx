@@ -23,7 +23,7 @@ export default function AddQuestBtn({ questState }) {
         title: "Title",
         difficulty: "Easy",
         category: "Stuff",
-        date: "2020-12-31",
+        date: "2023-12-31",
         time: "20:30",
         type: "Task",
       })

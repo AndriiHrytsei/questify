@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 // import React from 'react';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import chroma from "chroma-js";
 
@@ -89,43 +90,37 @@ const colourStyles = {
   }),
 };
 
-const DificultySelect = ({ onChange,selectedDificulty,stateCard }) => {
+const DificultySelect = ({ onChange, selectedDificulty, stateCard }) => {
   const [dificultyChoice, setDificultyChoice] = useState("");
-  // const [ index , setIndex ] = useState(0);
-  // const checkSelectedDificulty = () => {
-  //   if(selectedDificulty === "Easy"){
-  //     setIndex(0)
-  //   }
-  // }
+  
   let index;
-  if(selectedDificulty === "Easy"){
-    index = 0
+  if (selectedDificulty === "Easy") {
+    index = 0;
   }
-  if(selectedDificulty === "Normal"){
-    index = 1
+  if (selectedDificulty === "Normal") {
+    index = 1;
   }
-  if(selectedDificulty === "Hard"){
-    index = 2
+  if (selectedDificulty === "Hard") {
+    index = 2;
   }
-  console.log(dificultyChoice);
-  console.log('index :>> ', index);
+  
   const handleChange = (choice) => {
     setDificultyChoice(choice);
     onChange(choice);
-    // e.preventDefault()
   };
 
-  // useEffect(() => {
-  //   checkSelectedDificulty()
-  // }, [checkSelectedDificulty])
   return (
     <Select
       defaultValue={colourOptionsLevel[index]}
       options={colourOptionsLevel}
       styles={colourStyles}
       isSearchable={false}
-      isDisabled = {stateCard}
-      components={stateCard === true ? ({DropdownIndicator: () => true,IndicatorSeparator: () => null}) : ({IndicatorSeparator: () => null})}
+      isDisabled={stateCard}
+      components={
+        stateCard === true
+          ? { DropdownIndicator: () => true, IndicatorSeparator: () => null }
+          : { IndicatorSeparator: () => null }
+      }
       onChange={(choice) => handleChange(choice)}
     />
   );
@@ -135,4 +130,7 @@ export default DificultySelect;
 
 DificultySelect.propTypes = {
   onChange: PropTypes.func.isRequired,
+  selectedDificulty: PropTypes.string,
+  stateCard: PropTypes.bool,
 };
+
