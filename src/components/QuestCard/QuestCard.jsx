@@ -2,10 +2,10 @@ import css from "./QuestCard.module.css";
 import DificultySelect from "../Select/DificultySelect";
 import CategorySelect from "../Select/CategorySelect";
 import Cross from "../../images/Cross";
+import Modald from "../ModalDelet/Modald";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  deleteCard,
   editCard,
   setCardsCompleted,
 } from "../../redux/quests/operations";
@@ -19,6 +19,7 @@ export default function QuestCard({ card, defaultCardState }) {
   const [categorySelect, setCategorySelect] = useState(null);
   const [stateCard, setStateCard] = useState(defaultCardState ?? true);
   const [confirmationPage, setConfirmationPage] = useState(false);
+  const [modalDeletState,setModalDeletState] = useState(false)
   const dispatch = useDispatch();
 
   const updaitStateDoubleClick = () => {
@@ -34,8 +35,7 @@ export default function QuestCard({ card, defaultCardState }) {
   };
 
   const handleDelete = () => {
-    dispatch(deleteCard(card._id));
-    dispatch(unsetIsCreating());
+    setModalDeletState(true)
   };
 
   const handleCompleteCard = () => {
@@ -370,6 +370,7 @@ export default function QuestCard({ card, defaultCardState }) {
                   <li>
                     <button type="button" className={css.trashBin} onClick={handleDelete}>
                       <TrashBin />
+                      {modalDeletState === true && <Modald card={card}></Modald>}
                     </button>
                   </li>
                   <li>
