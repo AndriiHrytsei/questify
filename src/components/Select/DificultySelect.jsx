@@ -90,8 +90,8 @@ const colourStyles = {
   }),
 };
 
-const DificultySelect = ({ onChange, selectedDificulty, stateCard }) => {
-  const [dificultyChoice, setDificultyChoice] = useState("");
+const DificultySelect = ({ onDifficultyChange, selectedDificulty, stateCard }) => {
+  const [_, setDificultyChoice] = useState("");
   
   let index;
   if (selectedDificulty === "Easy") {
@@ -106,7 +106,7 @@ const DificultySelect = ({ onChange, selectedDificulty, stateCard }) => {
   
   const handleChange = (choice) => {
     setDificultyChoice(choice);
-    onChange(choice);
+    onDifficultyChange(choice);
   };
 
   return (
@@ -129,7 +129,7 @@ const DificultySelect = ({ onChange, selectedDificulty, stateCard }) => {
 export default DificultySelect;
 
 DificultySelect.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onDifficultyChange: PropTypes.func.isRequired,
   selectedDificulty: PropTypes.string,
   stateCard: PropTypes.bool,
 };

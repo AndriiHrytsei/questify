@@ -20,7 +20,6 @@ const initialState = {
   token: null,
   isRefreshing: false,
   isCreating: false,
-  isEditing: false,
 };
 
 const authSlice = createSlice({
