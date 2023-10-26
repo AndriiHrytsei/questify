@@ -5,10 +5,7 @@ import Cross from "../../images/Cross";
 import Modald from "../ModalDelet/Modald";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  editCard,
-  setCardsCompleted,
-} from "../../redux/quests/operations";
+import { editCard, setCardsCompleted } from "../../redux/quests/operations";
 import { useState } from "react";
 import { unsetIsCreating } from "../../redux/auth/authSlice";
 import Tick from "../../images/Tick";
@@ -18,10 +15,15 @@ import Done from "../../images/Done";
 export default function QuestCard({ card, defaultCardState }) {
   const [dificultySelect, setdificultySelect] = useState(null);
   const [categorySelect, setCategorySelect] = useState(null);
+  const [cardTitle, setCardTitle] = useState(card.title);
+  const [cardTime, setCardTime] = useState(card.time);
+  const [cardDate, setCardDate] = useState(card.date);
   const [stateCard, setStateCard] = useState(defaultCardState ?? true);
   const [confirmationPage, setConfirmationPage] = useState(false);
-  const [modalDeletState,setModalDeletState] = useState(false)
+  const [modalDeletState, setModalDeletState] = useState(false);
   const dispatch = useDispatch();
+
+  console.log(card.time);
 
   const updaitStateDoubleClick = () => {
     setStateCard(false);
@@ -36,7 +38,7 @@ export default function QuestCard({ card, defaultCardState }) {
   };
 
   const handleDelete = () => {
-    setModalDeletState(true)
+    setModalDeletState(true);
   };
 
   const handleCompleteCard = () => {
@@ -45,18 +47,16 @@ export default function QuestCard({ card, defaultCardState }) {
     setConfirmationPage(false);
   };
 
+
   const handleEdit = (e) => {
     e.preventDefault();
-    const form = e.target;
     dispatch(
       editCard({
-        title: form.elements.title.value,
+        title: cardTitle,
         difficulty: dificultySelect ? dificultySelect.label : card.difficulty,
         category: categorySelect ? categorySelect.label : card.category,
-        date: form.elements.date.value.split("T")[0],
-        time: form.elements.date.value.split("T")[1]
-          ? form.elements.date.value.split("T")[1]
-          : card.time,
+        date: cardDate,
+        time: cardTime ? cardTime : card.time,
         type: "Task",
         id: card._id,
       })
@@ -64,12 +64,14 @@ export default function QuestCard({ card, defaultCardState }) {
     dispatch(unsetIsCreating());
     setStateCard(true);
   };
-  
+
   const cancelChanges = () => {
-    dispatch(editCard({...card, id: card._id}))
+    setCardTitle(card.title);
+    setCardDate(card.date);
+    setCardTime(card.time);
     dispatch(unsetIsCreating());
     setStateCard(true);
-  }
+  };
 
   return (
     <form
@@ -93,7 +95,7 @@ export default function QuestCard({ card, defaultCardState }) {
                 : card.title}
             </button>
           </h3>
-          <Done/>
+          <Done />
           <button
             type="button"
             className={css.buttonContineun}
@@ -120,8 +122,7 @@ export default function QuestCard({ card, defaultCardState }) {
             <DificultySelect
               selectedDificulty={card.difficulty}
               stateCard={stateCard}
-              // card={card}
-              onChange={(selectedOption) => setdificultySelect(selectedOption)}
+              onDifficultyChange={(selectedOption) => setdificultySelect(selectedOption)}
             />
             <button type="button" onClick={handleConfirmationPage}>
               <svg
@@ -146,17 +147,29 @@ export default function QuestCard({ card, defaultCardState }) {
                 className={stateCard ? css.input_text_noActive : css.input_text}
                 readOnly={stateCard}
                 name="title"
-                defaultValue={card.title}
+                value={cardTitle}
+                onChange={(e) => setCardTitle(e.currentTarget.value)}
               />
             </div>
             <ul className={css.list_task}>
               <li>
                 <input
-                  type="datetime-local"
-                  className={css.input_date}
+                  type="date"
                   name="date"
+                  className={css.input_date}
                   readOnly={stateCard}
-                  defaultValue={`${card.date} ${card.time}`}
+                  value={cardDate}
+                  onChange={(e) => setCardDate(e.currentTarget.value)}
+                />
+              </li>
+              <li>
+                <input
+                  type="time"
+                  name="time"
+                  className={css.input_date}
+                  readOnly={stateCard}
+                  value={cardTime}
+                  onChange={(e) => setCardTime(e.currentTarget.value)}
                 />
               </li>
             </ul>
@@ -171,10 +184,21 @@ export default function QuestCard({ card, defaultCardState }) {
             </div>
             {stateCard === false && (
               <div>
-                {modalDeletState === true && <Modald card={card} onCancelClick={() => {setModalDeletState(false)}}/>}
+                {modalDeletState === true && (
+                  <Modald
+                    card={card}
+                    onCancelClick={() => {
+                      setModalDeletState(false);
+                    }}
+                  />
+                )}
                 <ul className={css.list_buttons}>
                   <li>
-                    <button type="button" className={css.trashBin} onClick={handleDelete}>
+                    <button
+                      type="button"
+                      className={css.trashBin}
+                      onClick={handleDelete}
+                    >
                       <TrashBin />
                     </button>
                   </li>

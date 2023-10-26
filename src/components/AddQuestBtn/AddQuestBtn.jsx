@@ -8,23 +8,39 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 export default function AddQuestBtn({ questState }) {
-  const [cardState, setCardState] = useState(true)
+  const [cardState, setCardState] = useState(true);
   const dispatch = useDispatch();
   const isCreating = useSelector(selectIsCreating);
 
   useEffect(() => {
-    questState(cardState)
-  }, [cardState, questState])
+    questState(cardState);
+  }, [cardState, questState]);
+
+  const getCurrentDate = () => {
+    const date = new Date();
+
+    const dateYMD = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+    return dateYMD
+  };
+
+  const getCurrentTime = () => {
+    const time = new Date()
+
+    const currentTime = `${time.getHours()}:${time.getMinutes()}`
+
+    return currentTime
+  }
 
   const click = () => {
-    setCardState(false)
+    setCardState(false);
     dispatch(
       addCard({
         title: "Title",
         difficulty: "Easy",
         category: "Stuff",
-        date: "2023-12-31",
-        time: "20:30",
+        date: getCurrentDate(),
+        time: getCurrentTime(),
         type: "Task",
       })
     );
@@ -58,5 +74,5 @@ export default function AddQuestBtn({ questState }) {
 }
 
 AddQuestBtn.propTypes = {
-  questState: PropTypes.func.isRequired
-}
+  questState: PropTypes.func.isRequired,
+};
