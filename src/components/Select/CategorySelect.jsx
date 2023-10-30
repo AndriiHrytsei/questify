@@ -1,13 +1,13 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 // import React from "react";
 import chroma from "chroma-js";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-import { colourOptions } from "../docs/data";
 import Select from "react-select";
 
-const dot = (color = "transparent") => ({
+export const dot = (color = "transparent") => ({
   alignItems: "center",
   display: "flex",
 
@@ -22,7 +22,7 @@ const dot = (color = "transparent") => ({
   },
 });
 
-const colourStyles = {
+export const categoryStyles = {
   control: (styles, state) => {
     // console.log(state.selectProps);
     const selectedColor = state.selectProps.value.color;
@@ -113,17 +113,17 @@ const DificultySelectGroup = ({ onChange, selectedCategory,stateCard }) => {
     onChange(choice);
   };
 
-  return (
-    <Select
-      defaultValue={colourOptions[index]}
-      options={colourOptions}
-      styles={colourStyles}
-      isSearchable={false}
-      isDisabled = {stateCard}
-      components={stateCard === true ? ({DropdownIndicator: () => true,IndicatorSeparator: () => null}) : ({IndicatorSeparator: () => null})}
-      onChange={(choice) => handleOnChange(choice)}
-    />
-  );
+  // return (
+  //   <Select
+  //     defaultValue={colourOptions[index]}
+  //     options={colourOptions}
+  //     styles={colourStyles}
+  //     isSearchable={false}
+  //     isDisabled = {stateCard}
+  //     components={stateCard === true ? ({DropdownIndicator: () => true,IndicatorSeparator: () => null}) : ({IndicatorSeparator: () => null})}
+  //     onChange={(choice) => handleOnChange(choice)}
+  //   />
+  // );
 };
 
 export default DificultySelectGroup;

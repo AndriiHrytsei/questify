@@ -1,6 +1,5 @@
 import css from "./QuestCard.module.css";
-import DificultySelect from "../Select/DificultySelect";
-import CategorySelect from "../Select/CategorySelect";
+import { categoryStyles } from "../Select/CategorySelect";
 import Cross from "../../images/Cross";
 import Modald from "../ModalDelet/Modald";
 import { useDispatch } from "react-redux";
@@ -11,10 +10,13 @@ import { unsetIsCreating } from "../../redux/auth/authSlice";
 import Tick from "../../images/Tick";
 import TrashBin from "../../images/TrashBin";
 import Done from "../../images/Done";
+import Select from "react-select";
+import { dificultyOptions, categoryOptions } from "../docs/data";
+import { dificultyStyles } from "../Select/DificultySelect";
 
 export default function QuestCard({ card, defaultCardState }) {
-  const [dificultySelect, setdificultySelect] = useState(null);
-  const [categorySelect, setCategorySelect] = useState(null);
+  const [dificultySelect, setdificultySelect] = useState(card.difficulty);
+  const [categorySelect, setCategorySelect] = useState(card.category);
   const [cardTitle, setCardTitle] = useState(card.title);
   const [cardTime, setCardTime] = useState(card.time);
   const [cardDate, setCardDate] = useState(card.date);
@@ -22,8 +24,6 @@ export default function QuestCard({ card, defaultCardState }) {
   const [confirmationPage, setConfirmationPage] = useState(false);
   const [modalDeletState, setModalDeletState] = useState(false);
   const dispatch = useDispatch();
-
-  console.log(card.time);
 
   const updaitStateDoubleClick = () => {
     setStateCard(false);
@@ -47,14 +47,17 @@ export default function QuestCard({ card, defaultCardState }) {
     setConfirmationPage(false);
   };
 
+  const getSelectValueIndex = (selectOptions, option) => {
+    return selectOptions.findIndex(obj => option === obj.label)
+  }
 
   const handleEdit = (e) => {
     e.preventDefault();
     dispatch(
       editCard({
         title: cardTitle,
-        difficulty: dificultySelect ? dificultySelect.label : card.difficulty,
-        category: categorySelect ? categorySelect.label : card.category,
+        difficulty: dificultySelect ? dificultySelect : card.difficulty,
+        category: categorySelect ? categorySelect : card.category,
         date: cardDate,
         time: cardTime ? cardTime : card.time,
         type: "Task",
@@ -66,6 +69,8 @@ export default function QuestCard({ card, defaultCardState }) {
   };
 
   const cancelChanges = () => {
+    setCategorySelect(card.category);
+    setdificultySelect(card.difficulty);
     setCardTitle(card.title);
     setCardDate(card.date);
     setCardTime(card.time);
@@ -119,10 +124,21 @@ export default function QuestCard({ card, defaultCardState }) {
       ) : (
         <>
           <div className={css.levels}>
-            <DificultySelect
-              selectedDificulty={card.difficulty}
-              stateCard={stateCard}
-              onDifficultyChange={(selectedOption) => setdificultySelect(selectedOption)}
+            <Select
+              value={dificultyOptions[getSelectValueIndex(dificultyOptions, dificultySelect)]}
+              options={dificultyOptions}
+              styles={dificultyStyles}
+              isSearchable={false}
+              isDisabled={stateCard}
+              components={
+                stateCard === true
+                  ? {
+                      DropdownIndicator: () => true,
+                      IndicatorSeparator: () => null,
+                    }
+                  : { IndicatorSeparator: () => null }
+              }
+              onChange={(choice) => setdificultySelect(choice.label)}
             />
             <button type="button" onClick={handleConfirmationPage}>
               <svg
@@ -176,10 +192,21 @@ export default function QuestCard({ card, defaultCardState }) {
           </div>
           <div className={css.group}>
             <div>
-              <CategorySelect
-                selectedCategory={card.category}
-                stateCard={stateCard}
-                onChange={(selectedOption) => setCategorySelect(selectedOption)}
+              <Select
+                value={categoryOptions[getSelectValueIndex(categoryOptions, categorySelect)]}
+                options={categoryOptions}
+                styles={categoryStyles}
+                isSearchable={false}
+                isDisabled={stateCard}
+                components={
+                  stateCard === true
+                    ? {
+                        DropdownIndicator: () => true,
+                        IndicatorSeparator: () => null,
+                      }
+                    : { IndicatorSeparator: () => null }
+                }
+                onChange={(choice) => setCategorySelect(choice.label)}
               />
             </div>
             {stateCard === false && (

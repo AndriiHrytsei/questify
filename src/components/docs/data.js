@@ -1,4 +1,4 @@
-  export const colourOptionsLevel = [
+  export const dificultyOptions = [
     { value: 'blue', label: 'Easy', color: '#00D7FF' },
     { value: 'forest', label: 'Normal', color: '#24D40C' },
     { value: 'red', label: 'Hard', color: '#DB0837' },
@@ -6,7 +6,7 @@
   ];
 
   
-  export const colourOptions = [
+  export const categoryOptions = [
     { value: 'ocean', label: 'Stuff', color: '#B9C3C8' },
     { value: 'blue', label: 'Family', color: '#FFE6D3'  },
     { value: 'purple', label: 'Health', color: '#CDF7FF' },
