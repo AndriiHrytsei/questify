@@ -1,0 +1,1 @@
+import{b as t,s as r,j as i,N as n}from"./index-72b9180c.js";import{P as e}from"./index-e47bd3b0.js";const d=({component:s,redirectTo:o="/"})=>!t(r)?i.jsx(n,{to:o}):s;d.propTypes={component:e.element.isRequired,redirectTo:e.string.isRequired};export{d as default};
