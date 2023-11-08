@@ -19,7 +19,7 @@ export default function AddQuestBtn({ questState }) {
   const getCurrentDate = () => {
     const date = new Date();
 
-    const dateYMD = `${date.getFullYear()}-${date.getMonth() > 9 ? date.getMonth() + 1 : `0 + ${date.getMonth()}`}-${date.getDate() > 9 ? date.getDate() + 1 : `0${date.getDate()}`}`;
+    const dateYMD = `${date.getFullYear()}-${date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth()}`}-${date.getDate() > 9 ? date.getDate() + 1 : `0${date.getDate()}`}`;
 
     return dateYMD
   };
