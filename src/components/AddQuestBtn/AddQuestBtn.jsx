@@ -19,18 +19,22 @@ export default function AddQuestBtn({ questState }) {
   const getCurrentDate = () => {
     const date = new Date();
 
-    const dateYMD = `${date.getFullYear()}-${date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth()}`}-${date.getDate() > 9 ? date.getDate() + 1 : `0${date.getDate()}`}`;
+    const dateYMD = `${date.getFullYear()}-${
+      date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth()}`
+    }-${date.getDate() > 9 ? date.getDate() + 1 : `0${date.getDate()}`}`;
 
-    return dateYMD
+    return dateYMD;
   };
 
   const getCurrentTime = () => {
-    const time = new Date()
+    const time = new Date();
 
-    const currentTime = `${time.getHours()}:${time.getMinutes()}`
+    const currentTime = `${
+      time.getHours() > 9 ? time.getHours() : `0${time.getHours()}`
+    }:${time.getMinutes() > 9 ? time.getMinutes() : `0${time.getMinutes()}`}`;
 
-    return currentTime
-  }
+    return currentTime;
+  };
 
   const click = () => {
     setCardState(false);
