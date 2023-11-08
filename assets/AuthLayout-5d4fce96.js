@@ -1,1 +1,0 @@
-import{j as t,r as n,O as a}from"./index-a2f41d26.js";const o="_authContainer_mzx53_1",s="_heading_mzx53_14",e="_logo_mzx53_19",r={authContainer:o,heading:s,logo:e},c=()=>t.jsx("section",{className:r.authContainer,children:t.jsx(n.Suspense,{fallback:t.jsx("p",{children:"Loading..."}),children:t.jsx(a,{})})});export{c as default};
